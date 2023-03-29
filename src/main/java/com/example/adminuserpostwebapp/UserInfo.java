@@ -19,19 +19,56 @@ public class UserInfo {
         private String zipcode;
         private Geo geo;
 
+        public String getStreet() {
+            return street;
+        }
+
+        public String getSuite() {
+            return suite;
+        }
+
+        public String getCity() {
+            return city;
+        }
+
+        public String getZipcode() {
+            return zipcode;
+        }
+
+        public Geo getGeo() {
+            return geo;
+        }
     }
 
     static class Geo {
         private String lat;
         private String lng;
 
+        public String getLat() {
+            return lat;
+        }
 
+        public String getLng() {
+            return lng;
+        }
     }
 
     static class Company {
         private String name;
         private String catchPhrase;
         private String bs;
+
+        public String getName() {
+            return name;
+        }
+
+        public String getCatchPhrase() {
+            return catchPhrase;
+        }
+
+        public String getBs() {
+            return bs;
+        }
     }
 
     public int getId() {
