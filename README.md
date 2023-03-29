@@ -2,7 +2,7 @@
 
 * IDE: Intellij
 * Web Framework: Springboot 2.5.7
-* JDK: 1.8.233
+* JDK: 1.8.333
 
 ### Reference Documentation
 
