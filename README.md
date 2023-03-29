@@ -30,3 +30,4 @@
   - The [sample API output Json file](https://github.com/tongjixianing/AdminUserPostWebAppApplication/blob/master/alluserposts.json)
 
 * Test case is under com/example/adminuserpostwebapp/AdminAPIControllerTest.java
+  - Test cases conduct the returned values for each method as well as simulating the API http service unavailibility for the app to handle such exceptions
