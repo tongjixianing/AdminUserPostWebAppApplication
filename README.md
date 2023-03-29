@@ -1,8 +1,8 @@
 # Project document
 
-* IDE: Itellij
+* IDE: Intellij
 * Web Framework: Springboot 2.5.7
-* JDK: 1.8.233
+* JDK: 1.8.333
 
 ### Reference Documentation
 
@@ -13,7 +13,9 @@
 
 # How to run
 
-* Checkout the project from gitHub in Intellij
+* Checkout the project from gitHub in Intellij: 
+    - New -> project from version control 
+    - Use the git repo url -> https://github.com/tongjixianing/AdminUserPostWebAppApplication.git
 
 * Locate the main class - AdminUserPostWebAppApplication and Right click Run 'AdminUserPostWebAppApplication'
 
@@ -24,6 +26,6 @@
 * Go to browser, type http://localhost:8080/admin/ which calls the admin API to list all posts for each user. 
   - The output is in Json format
   - There are 10 users and each user has 10 posts
-  - The sample output Json file
+  - The [sample API output Json file](https://github.com/tongjixianing/AdminUserPostWebAppApplication/blob/master/alluserposts.json)
 
 * Test case is under com/example/adminuserpostwebapp/AdminAPIControllerTest.java
