@@ -24,6 +24,6 @@
 * Go to browser, type http://localhost:8080/admin/ which calls the admin API to list all posts for each user. 
   - The output is in Json format
   - There are 10 users and each user has 10 posts
-  - The sample output Json file
+  - The [sample API output Json file](https://github.com/tongjixianing/AdminUserPostWebAppApplication/blob/master/alluserposts.json)
 
 * Test case is under com/example/adminuserpostwebapp/AdminAPIControllerTest.java
