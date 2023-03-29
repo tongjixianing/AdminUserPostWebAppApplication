@@ -16,6 +16,7 @@
 * Checkout the project from gitHub in Intellij: 
     - New -> project from version control 
     - Use the git repo url -> https://github.com/tongjixianing/AdminUserPostWebAppApplication.git
+    - It will load all depedencies from maven pom.xml and build the project
 
 * Locate the main class - AdminUserPostWebAppApplication and Right click Run 'AdminUserPostWebAppApplication'
 
