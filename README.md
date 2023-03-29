@@ -13,7 +13,9 @@
 
 # How to run
 
-* Checkout the project from gitHub in Intellij
+* Checkout the project from gitHub in Intellij: 
+    - New -> project from version control 
+    - Use the git repo url -> https://github.com/tongjixianing/AdminUserPostWebAppApplication.git
 
 * Locate the main class - AdminUserPostWebAppApplication and Right click Run 'AdminUserPostWebAppApplication'
 
