@@ -1,6 +1,6 @@
 # Project document
 
-* IDE: Intellij
+* IDE: Intellij CE
 * Web Framework: Springboot 2.5.7
 * JDK: 1.8.333
 
