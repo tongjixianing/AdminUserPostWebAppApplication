@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -19,32 +20,58 @@ public class AdminAPIController {
 
     public List<UserInfo> getAllUsers() {
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<List<UserInfo>> responseEntity =
-                restTemplate.exchange(
-                        usersAPIURL,
-                        HttpMethod.GET,
-                        null,
-                        new ParameterizedTypeReference<List<UserInfo>>() {
-                        }
-                );
-        List<UserInfo> users = responseEntity.getBody();
+        List<UserInfo> users;
+        ResponseEntity<List<UserInfo>> responseEntity;
+        try {
+            responseEntity =
+                    restTemplate.exchange(
+                            usersAPIURL,
+                            HttpMethod.GET,
+                            null,
+                            new ParameterizedTypeReference<List<UserInfo>>() {
+                            }
+                    );
+
+        } catch (HttpClientErrorException e) {
+            throw new IllegalStateException(
+                    "Unable to connect to users API service!!",
+                    e);
+        }
+        users = responseEntity.getBody();
+
+
         return users;
     }
 
     public List<PostInfo> getAllPostsbyUserID(int userID) {
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<List<PostInfo>> responseEntity =
-                restTemplate.exchange(
-                        postsAPIURL + "?userId=" + userID,
-                        HttpMethod.GET,
-                        null,
-                        new ParameterizedTypeReference<List<PostInfo>>() {
-                        }
-                );
+        ResponseEntity<List<PostInfo>> responseEntity;
+        try {
+            responseEntity =
+                    restTemplate.exchange(
+                            postsAPIURL,
+                            HttpMethod.GET,
+                            null,
+                            new ParameterizedTypeReference<List<PostInfo>>() {
+                            }
+                    );
+        } catch (HttpClientErrorException e) {
+            throw new IllegalStateException(
+                    "Unable to connect to posts API service!!",
+                    e);
+        }
+        List<PostInfo> allposts = responseEntity.getBody();
 
-        List<PostInfo> posts = responseEntity.getBody();
+        List<PostInfo> postsByUserID = new ArrayList<>();
 
-        return posts;
+
+        for (PostInfo postInfo : allposts) {
+            if (postInfo.getUserId() == userID)
+                postsByUserID.add(postInfo);
+        }
+
+
+        return postsByUserID;
     }
 
     @GetMapping("/admin")
@@ -58,6 +85,7 @@ public class AdminAPIController {
             List<PostInfo> postsbyUserID = getAllPostsbyUserID(userInfo.getId());
             UserPostInfo userPostInfo = new UserPostInfo(userInfo.getId(), userInfo.getName(), userInfo.getUsername(), userInfo.getEmail(), postsbyUserID);
             userPostInfoList.add(userPostInfo);
+
         }
 
         return new ResponseEntity<>(userPostInfoList, HttpStatus.OK);

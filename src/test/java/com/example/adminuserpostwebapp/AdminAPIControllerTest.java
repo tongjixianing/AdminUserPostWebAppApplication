@@ -1,7 +1,9 @@
 package com.example.adminuserpostwebapp;
 
 import org.junit.jupiter.api.Test;
+
 import org.springframework.http.ResponseEntity;
+
 
 import java.util.List;
 
@@ -14,7 +16,9 @@ class AdminAPIControllerTest {
     void testGetAllUsers() {
 
         AdminAPIController adminAPIController = new AdminAPIController();
+
         List<UserInfo> users = adminAPIController.getAllUsers();
+
         //Verify the return user list size
         assertEquals(10, users.size());
 
@@ -23,6 +27,7 @@ class AdminAPIControllerTest {
         assertEquals("Shanna@melissa.tv", users.get(1).getEmail());
 
     }
+
 
     @Test
     void testGetAllPostsbyUserID() {
