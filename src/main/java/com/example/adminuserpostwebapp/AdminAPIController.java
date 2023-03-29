@@ -16,6 +16,7 @@ public class AdminAPIController {
 
     private final String usersAPIURL = "https://jsonplaceholder.typicode.com/users";
     private final String postsAPIURL = "https://jsonplaceholder.typicode.com/posts";
+
     public List<UserInfo> getAllUsers() {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<List<UserInfo>> responseEntity =
@@ -34,7 +35,7 @@ public class AdminAPIController {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<List<PostInfo>> responseEntity =
                 restTemplate.exchange(
-                        postsAPIURL+"?userId=" + userID,
+                        postsAPIURL + "?userId=" + userID,
                         HttpMethod.GET,
                         null,
                         new ParameterizedTypeReference<List<PostInfo>>() {

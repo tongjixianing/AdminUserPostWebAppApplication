@@ -34,10 +34,10 @@ class AdminAPIControllerTest {
 
         // Verify the post title for userid==1
         /*
-        * userId	1
-        * id	2
-        * title	"qui est esse"
-        * */
+         * userId	1
+         * id	2
+         * title	"qui est esse"
+         * */
         assertEquals("qui est esse", postsbyUserIDResp.get(1).getTitle());
     }
 
@@ -50,8 +50,8 @@ class AdminAPIControllerTest {
         List<UserPostInfo> alluserposts = allUserPostsResp.getBody();
 
         // There should be 10 users's posts
-        
-        assertEquals(10,alluserposts.size());
+
+        assertEquals(10, alluserposts.size());
 
         //check first userID;
         assertEquals(1, alluserposts.get(0).getUserId());
