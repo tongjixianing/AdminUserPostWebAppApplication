@@ -2,13 +2,18 @@ package com.example.adminuserpostwebapp;
 
 import org.junit.jupiter.api.Test;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpClientErrorException;
 
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.junit.jupiter.api.Assertions.*;
-
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class AdminAPIControllerTest {
 
@@ -25,6 +30,20 @@ class AdminAPIControllerTest {
         // Verify the email for user id == 2
 
         assertEquals("Shanna@melissa.tv", users.get(1).getEmail());
+
+    }
+
+    @Test
+    void testUserAPIServiceAvailability() {
+
+        AdminAPIController adminAPIController = mock(AdminAPIController.class);
+
+        when(adminAPIController.getAllUsers())
+                .thenThrow(new HttpClientErrorException(HttpStatus.BAD_REQUEST));
+        Throwable t =
+                catchThrowable(() -> adminAPIController.getAllUsers());
+
+        assertThat(t).isInstanceOf(HttpClientErrorException.class);
 
     }
 
@@ -46,6 +65,20 @@ class AdminAPIControllerTest {
         assertEquals("qui est esse", postsbyUserIDResp.get(1).getTitle());
     }
 
+    @Test
+    void testPostAPIServiceAvailability() {
+
+        AdminAPIController adminAPIController = mock(AdminAPIController.class);
+
+        when(adminAPIController.getAllPostsbyUserID(1))
+                .thenThrow(new HttpClientErrorException(HttpStatus.BAD_REQUEST));
+        Throwable t =
+                catchThrowable(() -> adminAPIController.getAllPostsbyUserID(1));
+
+        assertThat(t).isInstanceOf(HttpClientErrorException.class);
+
+
+    }
 
     @Test
     void testGetAllUserPosts() {

@@ -33,9 +33,7 @@ public class AdminAPIController {
                     );
 
         } catch (HttpClientErrorException e) {
-            throw new IllegalStateException(
-                    "Unable to connect to users API service!!",
-                    e);
+            throw new HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         users = responseEntity.getBody();
 
@@ -56,9 +54,7 @@ public class AdminAPIController {
                             }
                     );
         } catch (HttpClientErrorException e) {
-            throw new IllegalStateException(
-                    "Unable to connect to posts API service!!",
-                    e);
+            throw new HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         List<PostInfo> allposts = responseEntity.getBody();
 
